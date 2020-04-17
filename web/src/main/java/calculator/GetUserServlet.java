@@ -22,14 +22,14 @@ public class GetUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String inputLine = request.getParameter("inputValue").trim();
-            correctInputValueVerification(inputLine);
+            inputValueVerification(inputLine);
             Pattern pattern = Pattern.compile("\\d+|[+\\-x/]");
             Matcher matcher = pattern.matcher(inputLine);
             double firstValue = Double.parseDouble(getValueFromMatcher(inputLine, matcher));
             String operation = getValueFromMatcher(inputLine, matcher);
             double secondValue = Double.parseDouble(getValueFromMatcher(inputLine, matcher));
             response.setContentType("text/plain");
-            dividingByZeroVerification(secondValue);
+            dividingByZeroVerification(secondValue, operation);
             String result = String.valueOf(getResult(firstValue, secondValue, operation));
             response.getWriter().write(result);
         } catch (DividingByZeroException | ExpressionNotFoundException | IOException e) {
@@ -38,8 +38,8 @@ public class GetUserServlet extends HttpServlet {
         }
     }
 
-    private void dividingByZeroVerification(double secondValue) throws DividingByZeroException {
-        if (secondValue == 0) {
+    private void dividingByZeroVerification(double secondValue, String operation) throws DividingByZeroException {
+        if (secondValue == 0 && operation.equals(DIVIDE)) {
             throw new DividingByZeroException("Dividing by zero");
         }
     }
@@ -51,7 +51,7 @@ public class GetUserServlet extends HttpServlet {
         throw new ExpressionNotFoundException("Input line was not correct format");
     }
 
-    private void correctInputValueVerification(String inputLine) throws ExpressionNotFoundException {
+    private void inputValueVerification(String inputLine) throws ExpressionNotFoundException {
         Pattern pattern = Pattern.compile("^\\d+[+\\-x/]\\d+$");
         Matcher matcher = pattern.matcher(inputLine);
         if (!matcher.find()) {

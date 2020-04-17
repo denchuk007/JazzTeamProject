@@ -11,7 +11,7 @@ public class ThreadTask {
 
     private final static Logger LOGGER = Logger.getLogger(ThreadsUtil.class.getName());
 
-    public double[][] multiplyMatrix(double[][] firstMatrix, double[][] secondMatrix) throws Exception{
+    public double[][] multiplyMatrix(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
         errorVerification(firstMatrix, secondMatrix);
         double[][] resultMatrix = new double[secondMatrix.length][secondMatrix[0].length];
         for (int i = 0; i < secondMatrix.length; i++) {
@@ -29,7 +29,7 @@ public class ThreadTask {
     public double[][] multiplyMatrixInMultithreading(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
         errorVerification(firstMatrix, secondMatrix);
         double[][] resultMatrix = new double[secondMatrix.length][secondMatrix[0].length];
-        ArrayList<RowAdderThread> threadList = new ArrayList<>();
+        List<RowAdderThread> threadList = new ArrayList<>();
         for (int i = 0; i < secondMatrix.length; i++) {
             RowAdderThread rowAdderThread = new RowAdderThread(resultMatrix, firstMatrix, secondMatrix, i);
             threadList.add(rowAdderThread);
@@ -51,14 +51,15 @@ public class ThreadTask {
         }
     }
 
-    public long getMatrixMultiplyTime(double[][] firstMatrix, double[][] secondMatrix) throws Exception{
+    public long getMatrixMultiplyTime(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
         long startTime = System.currentTimeMillis();
         multiplyMatrix(firstMatrix, secondMatrix);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getMatrixMultiplyInMultithreadingTime(double[][] firstMatrix, double[][] secondMatrix) throws Exception{
+    public long getMatrixMultiplyInMultithreadingTime(double[][] firstMatrix, double[][] secondMatrix)
+            throws Exception {
         long startTime = System.currentTimeMillis();
         multiplyMatrixInMultithreading(firstMatrix, secondMatrix);
         long endTime = System.currentTimeMillis();

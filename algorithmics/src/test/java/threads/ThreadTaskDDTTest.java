@@ -33,7 +33,7 @@ public class ThreadTaskDDTTest {
         File threadsActualFiles = new File(THREADS_ACTUAL_FILE_PATH);
         File[] rootMatrices = threadsRootFiles.listFiles();
         File[] actualMatrices = threadsActualFiles.listFiles();
-        Object[][] data = new Object[actualMatrices.length][actualMatrices.length];
+        Object[][] data = new Object[actualMatrices.length][3];
         for (int i = 0; i < actualMatrices.length; i++) {
             for (int j = 0, counter = 0; j < rootMatrices.length; j++) {
                 if (actualMatrices[i].getName().substring(12).equals(rootMatrices[j].getName().substring(11))) {

@@ -39,4 +39,14 @@ public class RequestsTest {
         Assert.assertEquals(request.getResponseFromDeleteRequest(accessToken,
                 request.getFileIdFromPostRequest(accessToken)).getResponseCode(), 204);
     }
+
+    @Test
+    public void getResponseFromGetRequestWithIncorrectAccessToken() throws IOException, ExpressionNotFoundException {
+        Assert.assertEquals(request.getResponseFromGetRequest("").getResponseCode(), 401);
+    }
+
+    @Test
+    public void getResponseFromDeleteRequestWithIncorrectFileId() throws IOException, ExpressionNotFoundException {
+        Assert.assertEquals(request.getResponseFromDeleteRequest(accessToken, "").getResponseCode(), 404);
+    }
 }

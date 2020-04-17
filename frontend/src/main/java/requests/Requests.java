@@ -40,23 +40,6 @@ public class Requests {
         return getFileIdFromInputStream(getResponseFromPostRequest(accessToken).getInputStream());
     }
 
-//    public HttpURLConnection getResponseFromPutRequest(String accessToken) throws IOException, ExpressionNotFoundException {
-//        InputStream inputStream = getResponseFromPostRequest(accessToken).getInputStream();
-//        //System.out.println(getDataFromInputStream(inputStream));
-//        String fileId = getFileIdFromInputStream(inputStream);
-//        URL url = new URL(Constants.FILES_URL + fileId + Constants.API_KEY);
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//        connection.addRequestProperty("Authorization", "Bearer " + accessToken);
-//        connection.addRequestProperty("Accept", "application/json");
-//        connection.addRequestProperty("Content-Type", "application/json");
-//        connection.setRequestMethod("PUT");
-//        connection.setDoOutput(true);
-//        byte[] out = Constants.ACCESS_TOKEN_DATA.getBytes();
-//        writeToOutputStream(connection, out);
-//        //System.out.println(getDataFromInputStream(connection.getInputStream()));
-//        return connection;
-//    }
-
     public CloseableHttpResponse getResponseFromPutRequest(String accessToken, String fileId) throws IOException, ExpressionNotFoundException, URISyntaxException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPatch httpPatch = new HttpPatch(new URI(Constants.FILES_URL + fileId + Constants.API_KEY));
@@ -78,7 +61,7 @@ public class Requests {
     }
 
     public String getAccessToken() throws IOException, ExpressionNotFoundException {
-        String url = "https://oauth2.googleapis.com/token";
+        String url = Constants.ACCESS_TOKEN_URL;
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.addRequestProperty("content-type", "application/x-www-form-urlencoded");
         connection.addRequestProperty("user-agent", "google-oauth-playground");

@@ -11,6 +11,7 @@ $(document).ready(function() {
             },
             error : function (responseText) {
                 $('#ajaxGetUserServletResponse').text(responseText);
+                $('#inputValue').val('');
             }
         });
     });
