@@ -13,4 +13,20 @@ public class Mark {
         this.mark = mark;
         date = LocalDate.now();
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public short getMark() {
+        return mark;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
 }
