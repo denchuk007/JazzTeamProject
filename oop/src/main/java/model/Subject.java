@@ -1,3 +1,5 @@
+package model;
+
 public class Subject {
 
     private String title;

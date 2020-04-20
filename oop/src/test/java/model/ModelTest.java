@@ -1,3 +1,5 @@
+package model;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,14 +38,14 @@ public class ModelTest {
         correctMarks.add(historyMark);
 
         correctNotifications = new ArrayList<>();
-        correctNotifications.add("Message for Jack | New mark from Mike: Date(2020-04-20), " +
-                "Subject(Geography), Mark(7), Teacher(Ann)");
+        correctNotifications.add("Message for Michael | New mark from Nick: Date(2020-04-20), " +
+                "model.Subject(Geography), model.Mark(7), model.Teacher(Ann)");
     }
 
 //    @Test
 //    public void administratorDeleteUser() {
-//        Administrator administrator = new Administrator("Admin", LocalDate.now(), User.Role.ADMINISTRATOR);
-//        Teacher teacher = new Teacher("Lily", LocalDate.now(), User.Role.TEACHER, classroom);
+//        model.Administrator administrator = new model.Administrator("Admin", LocalDate.now(), model.User.Role.ADMINISTRATOR);
+//        model.Teacher teacher = new model.Teacher("Lily", LocalDate.now(), model.User.Role.TEACHER, classroom);
 //        administrator.deleteUser(teacher);
 //        System.gc();
 //        Assert.assertNull(teacher);
@@ -70,9 +72,10 @@ public class ModelTest {
     }
 
     @Test
-    public void parentGetNotificationWhenHisPupilsGetMark() {
+    public void parentGetNotificationWhenPupilsGetMark() {
+        Pupil pupil = new Pupil("Nick", LocalDate.now(), User.Role.PUPIL, classroom);
+        Parent parent = teacher.createParent("Michael", LocalDate.now(), User.Role.PARENT, pupil);
         teacher.addMark(pupil, geographyMark);
         Assert.assertEquals(parent.getNotifications(), correctNotifications);
     }
-
 }

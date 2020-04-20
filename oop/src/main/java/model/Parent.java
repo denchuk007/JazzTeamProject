@@ -1,7 +1,9 @@
+package model;
+
 import java.time.LocalDate;
 import java.util.*;
 
-public class Parent extends User {
+public class Parent extends User implements Observer {
 
     private List<Pupil> pupils = new ArrayList<>();
     private List<String> notifications = new ArrayList<>();
@@ -20,12 +22,15 @@ public class Parent extends User {
     }
 
     public List<String> getNotifications() {
-        return notifications;
+        List<String> tempNotifications = new ArrayList<>(notifications);
+        notifications = new ArrayList<>();
+        return tempNotifications;
     }
 
+    @Override
     public void handleEvent(Pupil pupil, Mark mark) {
         notifications.add("Message for " + this.getName() + " | New mark from " + pupil.getName() + ": Date(" +
-                mark.getDate() + "), Subject(" + mark.getSubject().getTitle() + "), Mark(" +
-                mark.getMark() + "), Teacher(" +  mark.getTeacher().getName() + ")");
+                mark.getDate() + "), model.Subject(" + mark.getSubject().getTitle() + "), model.Mark(" +
+                mark.getMark() + "), model.Teacher(" +  mark.getTeacher().getName() + ")");
     }
 }
