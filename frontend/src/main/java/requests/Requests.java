@@ -15,32 +15,21 @@ import java.util.regex.Pattern;
 
 public class Requests {
 
-    public HttpURLConnection getResponseFromGetRequest(String accessToken) throws IOException, ExpressionNotFoundException {
-        URL url = new URL(Constants.FILES_URL + Constants.API_KEY);
+    public HttpURLConnection getResponseFromRequest(String stringUrl, String requestMethod, String accessToken) throws IOException {
+        URL url = new URL(stringUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.addRequestProperty("Accept", "application/json");
         connection.addRequestProperty("Authorization", "Bearer " + accessToken);
-        connection.setRequestMethod("GET");
+        connection.setRequestMethod(requestMethod);
+        if (requestMethod.equals("POST")) {
+            connection.addRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+            connection.setFixedLengthStreamingMode(0);
+        }
         return connection;
     }
 
-    public HttpURLConnection getResponseFromPostRequest(String accessToken) throws IOException {
-        URL url = new URL(Constants.FILES_URL + Constants.API_KEY);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.addRequestProperty("Authorization", "Bearer " + accessToken);
-        connection.addRequestProperty("Accept", "application/json");
-        connection.addRequestProperty("Content-Type", "application/json");
-        connection.setRequestMethod("POST");
-        connection.setFixedLengthStreamingMode(0);
-        connection.setDoOutput(true);
-        return connection;
-    }
-
-    public String getFileIdFromPostRequest(String accessToken) throws IOException, ExpressionNotFoundException {
-        return getFileIdFromInputStream(getResponseFromPostRequest(accessToken).getInputStream());
-    }
-
-    public CloseableHttpResponse getResponseFromPutRequest(String accessToken, String fileId) throws IOException, ExpressionNotFoundException, URISyntaxException {
+    public CloseableHttpResponse getResponseFromRequest(String fileId, String accessToken) throws IOException, URISyntaxException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPatch httpPatch = new HttpPatch(new URI(Constants.FILES_URL + fileId + Constants.API_KEY));
         httpPatch.addHeader("Authorization", "Bearer " + accessToken);
@@ -49,15 +38,9 @@ public class Requests {
         return httpClient.execute(httpPatch);
     }
 
-    public HttpURLConnection getResponseFromDeleteRequest(String accessToken, String fileId) throws IOException, ExpressionNotFoundException {
-        URL url = new URL(Constants.FILES_URL + fileId + Constants.API_KEY);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setDoOutput(true);
-        connection.addRequestProperty("Accept", "application/json");
-        connection.addRequestProperty("Authorization", "Bearer " + accessToken);
-        connection.setRequestMethod("DELETE");
-        connection.connect();
-        return connection;
+    public String getFileId(String accessToken) throws IOException, ExpressionNotFoundException {
+        return getFileIdFromInputStream(getResponseFromRequest(Constants.FILES_API_KEY_URL,
+                "POST", accessToken).getInputStream());
     }
 
     public String getAccessToken() throws IOException, ExpressionNotFoundException {
@@ -73,7 +56,8 @@ public class Requests {
         Pattern pattern = Pattern.compile("\"access_token\":\\s\".+\"");
         Matcher matcher = pattern.matcher(connectionResponse);
         if (matcher.find()) {
-            return connectionResponse.substring(matcher.start() + 17, matcher.end() - 1);
+            String accessToken = connectionResponse.substring(matcher.start(), matcher.end() - 1);
+            return accessToken.substring(accessToken.lastIndexOf("\"") + 1);
         }
         throw new ExpressionNotFoundException("Expression not found");
     }
@@ -83,7 +67,8 @@ public class Requests {
         Pattern pattern = Pattern.compile("\"id\":\\s\".+\"");
         Matcher matcher = pattern.matcher(connectionResponse);
         if (matcher.find()) {
-            return "/" + connectionResponse.substring(matcher.start() + 7, matcher.end() - 1);
+            String fileId = connectionResponse.substring(matcher.start(), matcher.end() - 1);
+            return "/" + fileId.substring(fileId.lastIndexOf("\"") + 1);
         }
         throw new ExpressionNotFoundException("Expression not found");
     }
@@ -100,7 +85,7 @@ public class Requests {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder stringBuilder = new StringBuilder();
         while (bufferedReader.ready()) {
-            stringBuilder.append((char)bufferedReader.read());
+            stringBuilder.append((char) bufferedReader.read());
         }
         bufferedReader.close();
         return stringBuilder.toString();

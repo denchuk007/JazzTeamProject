@@ -19,34 +19,46 @@ public class RequestsTest {
     }
 
     @Test
-    public void getResponseFromGetRequest() throws IOException, ExpressionNotFoundException {
-        Assert.assertEquals(request.getResponseFromGetRequest(accessToken).getResponseCode(), 200);
+    public void getResponseFromGetRequest() throws IOException {
+        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL,"GET",
+                accessToken).getResponseCode(), 200);
     }
 
     @Test
     public void getResponseFromPostRequest() throws IOException {
-        Assert.assertEquals(request.getResponseFromPostRequest(accessToken).getResponseCode(), 200);
+        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL,"POST",
+                accessToken).getResponseCode(), 200);
     }
 
     @Test
-    public void getResponseFromPutRequest() throws IOException, ExpressionNotFoundException, URISyntaxException {
-        Assert.assertEquals(request.getResponseFromPutRequest(accessToken,
-                request.getFileIdFromPostRequest(accessToken)).getStatusLine().getStatusCode(), 200);
+    public void getResponseFromPutRequest() throws IOException, URISyntaxException, ExpressionNotFoundException {
+        Assert.assertEquals(request.getResponseFromRequest(request.getFileId(accessToken),
+                accessToken).getStatusLine().getStatusCode(), 200);
     }
 
     @Test
     public void getResponseFromDeleteRequest() throws IOException, ExpressionNotFoundException {
-        Assert.assertEquals(request.getResponseFromDeleteRequest(accessToken,
-                request.getFileIdFromPostRequest(accessToken)).getResponseCode(), 204);
+        String fileId = request.getFileId(accessToken);
+        String url = Constants.FILES_URL + fileId + Constants.API_KEY;
+        Assert.assertEquals(request.getResponseFromRequest(url, "DELETE",
+                accessToken).getResponseCode(), 204);
     }
 
     @Test
-    public void getResponseFromGetRequestWithIncorrectAccessToken() throws IOException, ExpressionNotFoundException {
-        Assert.assertEquals(request.getResponseFromGetRequest("").getResponseCode(), 401);
+    public void getResponseFromGetRequestWithIncorrectAccessToken() throws IOException {
+        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "GET",
+                "").getResponseCode(), 401);
     }
 
     @Test
-    public void getResponseFromDeleteRequestWithIncorrectFileId() throws IOException, ExpressionNotFoundException {
-        Assert.assertEquals(request.getResponseFromDeleteRequest(accessToken, "").getResponseCode(), 404);
+    public void getResponseFromGetRequestWithNullAccessToken() throws IOException {
+        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "GET",
+                null).getResponseCode(), 401);
+    }
+
+    @Test
+    public void getResponseFromDeleteRequestWithIncorrectFileId() throws IOException {
+        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL,
+                "DELETE", accessToken).getResponseCode(), 404);
     }
 }

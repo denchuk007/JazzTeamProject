@@ -23,8 +23,8 @@ public class ThreadsUtil {
             int matrixHeight = lines.size();
             double[][] matrix = new double[matrixHeight][matrixWidth];
             for (int i = 0; i < matrixHeight; i++) {
+                String[] line = lines.get(i).split(" ");
                 for (int j = 0; j < matrixWidth; j++) {
-                    String[] line = lines.get(i).split(" ");
                     matrix[i][j] = Double.parseDouble(line[j]);
                 }
             }

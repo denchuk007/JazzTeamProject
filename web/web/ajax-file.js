@@ -6,15 +6,18 @@ $(document).ready(function() {
                 inputValue : $('#inputValue').val(),
             },
             success : function(responseText) {
-                $('#ajaxGetUserServletResponse').text(responseText);
-                $('#inputValue').val('');
+                //$('#ajaxGetUserServletResponse').text(responseText);
+                $('#inputValue').val(responseText);
+                //$('#inputValue').val('');
             },
             error : function (responseText) {
-                $('#ajaxGetUserServletResponse').text(responseText);
-                $('#inputValue').val('');
+                $('#inputValue').val(responseText);
+                //$('#ajaxGetUserServletResponse').text(responseText);
+                //$('#inputValue').val('');
             }
         });
     });
+
 
     $('#deleteButton').on('click', function() {
         $('#ajaxGetUserServletResponse').text("");

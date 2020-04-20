@@ -8,6 +8,7 @@ import org.junit.Test;
 public class TagTaskTest {
 
     private static TagTask tagTask;
+    private static String tagsString;
     private static final String COLLECTIONS_FILE_PATH = "src/main/resources/collections/";
     private static final String INSERTED_TAGS_FILE_PATH =  COLLECTIONS_FILE_PATH + "insertedTags";
     private static final String CORRECT_INSERTED_TAGS_FILE_PATH = COLLECTIONS_FILE_PATH + "correctInsertedTags";
@@ -16,8 +17,7 @@ public class TagTaskTest {
     private static final String TAGS_WITH_ANOTHER_TAG_FILE_PATH = COLLECTIONS_FILE_PATH + "tagsWithAnotherTag";
     private static final String TAGS_WITHOUT_ANOTHER_TAG_FILE_PATH = COLLECTIONS_FILE_PATH + "tagsWithoutAnotherTag";
     private static final String EMPTY_FILE = COLLECTIONS_FILE_PATH + "empty";
-    private static final String tagName = "tag";
-    private static String tagsString;
+    private static final String TAG_NAME = "tag";
 
     @BeforeClass
     public static void initializeBeforeClass() {
@@ -27,7 +27,7 @@ public class TagTaskTest {
     @Test
     public void findInsertedTags() {
         tagsString = CollectionsUtil.readFromFile(INSERTED_TAGS_FILE_PATH);
-        String inputTags = tagTask.findTag(tagName, tagsString);
+        String inputTags = tagTask.findTag(TAG_NAME, tagsString);
         String correctTags =  CollectionsUtil.readFromFile(CORRECT_INSERTED_TAGS_FILE_PATH);
         Assert.assertEquals(inputTags, correctTags);
     }
@@ -35,7 +35,7 @@ public class TagTaskTest {
     @Test
     public void findNotInsertedTags() {
         tagsString = CollectionsUtil.readFromFile(NOT_INSERTED_TAGS_FILE_PATH);
-        String inputTags = tagTask.findTag(tagName, tagsString);
+        String inputTags = tagTask.findTag(TAG_NAME, tagsString);
         String correctTags =  CollectionsUtil.readFromFile(CORRECT_NOT_INSERTED_TAGS_FILE_PATH);
         Assert.assertEquals(inputTags, correctTags);
     }
@@ -43,7 +43,7 @@ public class TagTaskTest {
     @Test
     public void findCorrectTags() {
         tagsString = CollectionsUtil.readFromFile(TAGS_WITH_ANOTHER_TAG_FILE_PATH);
-        String inputTags = tagTask.findTag(tagName, tagsString);
+        String inputTags = tagTask.findTag(TAG_NAME, tagsString);
         String correctTags =  CollectionsUtil.readFromFile(TAGS_WITHOUT_ANOTHER_TAG_FILE_PATH);
         Assert.assertEquals(inputTags, correctTags);
     }
@@ -51,7 +51,7 @@ public class TagTaskTest {
     @Test(expected = NullPointerException.class)
     public void findTagsInEmptyFile() {
         tagsString = CollectionsUtil.readFromFile(EMPTY_FILE);
-        tagTask.findTag(tagName, tagsString);
+        tagTask.findTag(TAG_NAME, tagsString);
     }
 
 

@@ -19,19 +19,17 @@ public class TagTask {
         Pattern tagPattern = Pattern.compile("<[^/]|</\\w+>");
         Matcher tagMatcher = tagPattern.matcher(tagsLines);
         int openTagIndex = 0;
-        boolean isClose = false;
+        boolean closeTagIsExists = false;
         while (tagMatcher.find()) {
             String foundTag = tagsLines.substring(tagMatcher.start(), tagMatcher.end());
-            if (tagIsOpen(foundTag, tag)) {
-                if (isClose) {
+            if (tagIsOpen(foundTag, tag) && closeTagIsExists) {
                     tagsDeque.add(tagsLines.substring(openTagIndex, tagMatcher.end() - 2)
                             .replaceAll(LINE_SEPARATOR, ""));
-                    isClose = false;
+                    closeTagIsExists = false;
                     openTagIndex = getOpenTagStartIndex(tagMatcher);
-                }
             }
             if (tagIsClose(foundTag)) {
-                isClose = true;
+                closeTagIsExists = true;
                 if (lineEndVerify(tagsLines, tagMatcher)) {
                     tagsDeque.add(tagsLines.substring(openTagIndex, tagMatcher.end())
                             .replaceAll(LINE_SEPARATOR, ""));
@@ -73,9 +71,9 @@ public class TagTask {
         return correctTags.toString();
     }
 
-    private void errorsVerification(String... inputStrings) throws NullPointerException {
-        for (String inputString : inputStrings) {
-            if (!lineIsCorrect(inputString)) {
+    private void errorsVerification(String... inputLines) throws NullPointerException {
+        for (String inputLine : inputLines) {
+            if (!lineIsCorrect(inputLine)) {
                 throw new NullPointerException("String is not correct");
             }
         }
