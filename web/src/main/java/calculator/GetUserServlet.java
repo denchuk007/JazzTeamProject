@@ -113,7 +113,7 @@ public class GetUserServlet extends HttpServlet {
     }
 
     private void inputValueVerification(String inputLine) throws ExpressionNotFoundException {
-        Pattern pattern = Pattern.compile("^[-]?\\d([-+/x]\\d)+$");
+        Pattern pattern = Pattern.compile("^[-]?\\d|(\\d+\\.\\d+)([-+/x]\\d|(\\d+\\.\\d+))+$");
         Matcher matcher = pattern.matcher(inputLine);
         if (!matcher.find()) {
             throw new ExpressionNotFoundException("Input line was not correct format");
