@@ -54,8 +54,6 @@
       <td><input type="button" value="/" OnClick="display.value += '/'"></td>
     </tr>
   </table>
-  <strong>Result: </strong>
-  <span id="ajaxGetUserServletResponse"></span>
 </form>
 </body>
 </html>
