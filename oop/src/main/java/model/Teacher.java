@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Teacher extends User {
 
-    private List<Subject> subjects =  new ArrayList<>();
+    private List<Subject> subjects = new ArrayList<>();
     private Classroom classroom;
 
     public Teacher(String name, LocalDate birthday, User.Role role, Classroom classroom) {
@@ -31,5 +31,13 @@ public class Teacher extends User {
     public void addMark(Pupil pupil, Mark mark) {
         pupil.addMark(mark);
         Publisher.INSTANCE.notifyObservers(pupil, mark);
+    }
+
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
+    }
+
+    public void removeSubject(Subject subject) {
+        subjects.remove(subject);
     }
 }
