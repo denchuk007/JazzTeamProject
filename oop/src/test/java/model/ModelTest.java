@@ -23,7 +23,6 @@ public class ModelTest {
     private static Mark englishMark;
     private static Mark mathematicsMark;
 
-
     @BeforeClass
     public static void initialize() {
         classroom = new Classroom(Short.parseShort("1"), "А");
