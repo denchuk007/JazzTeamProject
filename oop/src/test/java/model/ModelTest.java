@@ -45,15 +45,6 @@ public class ModelTest {
                 + "), Subject(Geography), Mark(7), Teacher(Ann)");
     }
 
-//    @Test
-//    public void administratorDeleteUser() {
-//        model.Administrator administrator = new model.Administrator("Admin", LocalDate.now(), model.User.Role.ADMINISTRATOR);
-//        model.Teacher teacher = new model.Teacher("Lily", LocalDate.now(), model.User.Role.TEACHER, classroom);
-//        administrator.deleteUser(teacher);
-//        System.gc();
-//        Assert.assertNull(teacher);
-//    }
-
     @Test
     public void createdPupilsAreLinkedWithHisParent() {
         Assert.assertEquals(pupil, parent.getPupils().get(0));
@@ -111,7 +102,6 @@ public class ModelTest {
         Parent parent = administrator.createParent("Parent", LocalDate.now(), User.Role.PARENT, pupil);
         Assert.assertEquals(parent.getClass(), Parent.class);
     }
-
 
     @Test
     public void teacherCreatePupil() {

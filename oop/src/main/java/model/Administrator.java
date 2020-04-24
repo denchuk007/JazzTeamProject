@@ -34,7 +34,4 @@ public class Administrator extends User {
         pupil.addMark(mark);
         Publisher.INSTANCE.notifyObservers(pupil, mark);
     }
-//    public void deleteUser(model.User user) {
-//        user = null;
-//    }
 }
