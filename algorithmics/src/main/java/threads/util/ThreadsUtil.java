@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class ThreadsUtil {
 
     private ThreadsUtil() {
-        throw new IllegalStateException("Utility class");
+
     }
 
     private final static Logger LOGGER = Logger.getLogger(ThreadsUtil.class.getName());

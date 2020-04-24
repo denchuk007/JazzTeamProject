@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class FilesUtil {
 
     private FilesUtil() {
-        throw new IllegalStateException("Utility class");
+
     }
 
     private static final Logger LOGGER = Logger.getLogger(FilesUtil.class.getName());

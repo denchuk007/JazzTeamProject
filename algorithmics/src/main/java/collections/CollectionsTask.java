@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CollectionsTask {
 
-    private SecureRandom random;
+    private final SecureRandom random;
 
     public CollectionsTask() {
         random = new SecureRandom();
