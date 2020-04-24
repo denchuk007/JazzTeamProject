@@ -3,7 +3,7 @@ package arrays;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class ArrayCombineTaskTest {
 
@@ -16,10 +16,10 @@ public class ArrayCombineTaskTest {
     @BeforeClass
     public static void initialize() {
         arrayCombineAndSortTask = new ArrayCombineTask();
-        inputArrayWithEvenCountOfElements = new int[] { 23, 12, 2, 5, 124, 76, 35, 678, 1 };
-        inputArrayWithUnevenCountOfElements = new int[] { 73, 1, 84, 34, 2, 96, 31, 4 };
-        sortAndCombinedArrayWithEvenCountOfElements = new int[] { 1, 2, 5, 12, 23, 35, 76, 124, 678, 1, 2, 5, 12, 23, 35, 76, 124, 678 };
-        sortAndCombinedArrayWithUnevenCountOfElements = new int[] { 1, 2, 5, 12, 23, 35, 76, 124, 678, 1, 2, 4, 31, 34, 73, 84, 96 };
+        inputArrayWithEvenCountOfElements = new int[]{23, 12, 2, 5, 124, 76, 35, 678, 1};
+        inputArrayWithUnevenCountOfElements = new int[]{73, 1, 84, 34, 2, 96, 31, 4};
+        sortAndCombinedArrayWithEvenCountOfElements = new int[]{1, 2, 5, 12, 23, 35, 76, 124, 678, 1, 2, 5, 12, 23, 35, 76, 124, 678};
+        sortAndCombinedArrayWithUnevenCountOfElements = new int[]{1, 2, 5, 12, 23, 35, 76, 124, 678, 1, 2, 4, 31, 34, 73, 84, 96};
     }
 
     @Test

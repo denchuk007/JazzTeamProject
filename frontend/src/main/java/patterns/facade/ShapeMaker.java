@@ -11,13 +11,15 @@ public class ShapeMaker {
         square = new Square();
     }
 
-    public String drawCircle(){
+    public String drawCircle() {
         return circle.draw();
     }
-    public String drawRectangle(){
+
+    public String drawRectangle() {
         return rectangle.draw();
     }
-    public String drawSquare(){
+
+    public String drawSquare() {
         return square.draw();
     }
 }

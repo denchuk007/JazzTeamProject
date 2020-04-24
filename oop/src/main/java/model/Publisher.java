@@ -7,7 +7,9 @@ public class Publisher implements Observed {
 
     private static List<Observer> subscribers = new ArrayList<>();
 
-    private Publisher() { }
+    private Publisher() {
+    }
+
     public static final Publisher INSTANCE = new Publisher();
 
     @Override

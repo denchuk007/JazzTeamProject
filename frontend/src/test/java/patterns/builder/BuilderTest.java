@@ -6,7 +6,7 @@ import org.junit.Test;
 public class BuilderTest {
 
     @Test
-        public void personsAreSame() {
+    public void personsAreSame() {
         Person firstPeron = new Person.Builder()
                 .withName("Mike")
                 .withSurname("Crawford")

@@ -1,7 +1,5 @@
 package requests;
 
-import java.net.URL;
-
 public class Constants {
 
     public static final String FILES_URL = "https://www.googleapis.com/drive/v3/files";

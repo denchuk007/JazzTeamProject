@@ -21,13 +21,13 @@ public class ThreadTaskTest {
     @BeforeClass
     public static void initialize() {
         threadTask = new ThreadTask();
-        firstNotComparableMatrix = new double[][] {
-                { 1, 1, 1, 1 },
-                { 1, 1, 1, 1 }
+        firstNotComparableMatrix = new double[][]{
+                {1, 1, 1, 1},
+                {1, 1, 1, 1}
         };
-        secondNotComparableMatrix = new double[][] {
-                { 2, 2, 2 },
-                { 2, 2, 2 }
+        secondNotComparableMatrix = new double[][]{
+                {2, 2, 2},
+                {2, 2, 2}
         };
         firstMatrix = ThreadsUtil.readMatrixFromFile(FIRST_MATRIX_FILE_PATH);
         secondMatrix = ThreadsUtil.readMatrixFromFile(SECOND_MATRIX_FILE_PATH);

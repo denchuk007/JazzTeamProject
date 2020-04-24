@@ -29,8 +29,8 @@ public class IteratorTest {
 
     @Test
     public void iteratorPattern() {
-        for(Iterator iterator = namesRepository.getIterator(); iterator.hasNext();) {
-            expectedNames.addLast((String)iterator.next());
+        for (Iterator iterator = namesRepository.getIterator(); iterator.hasNext(); ) {
+            expectedNames.addLast((String) iterator.next());
         }
         Assert.assertEquals(expectedNames, actualNames);
     }

@@ -20,7 +20,7 @@ public class ServiceLocator {
         }
 
         InitialContext context = new InitialContext();
-        Service ServiceOne = (Service)context.lookup(name);
+        Service ServiceOne = (Service) context.lookup(name);
         cache.addService(ServiceOne);
         return ServiceOne;
     }

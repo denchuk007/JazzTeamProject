@@ -13,8 +13,8 @@ public class ExceptionsTaskTest {
     @BeforeClass
     public static void initialize() {
         exceptionsTask = new ExceptionsTask();
-        inputArray = new int[] { 3, 5, 1, 3 };
-        incrementedArray = new int[] { 4, 6, 2, 4 };
+        inputArray = new int[]{3, 5, 1, 3};
+        incrementedArray = new int[]{4, 6, 2, 4};
     }
 
     @Test

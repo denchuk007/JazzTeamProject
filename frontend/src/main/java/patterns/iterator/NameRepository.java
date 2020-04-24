@@ -20,7 +20,7 @@ public class NameRepository implements Container {
 
         @Override
         public boolean hasNext() {
-            if(index < names.size()){
+            if (index < names.size()) {
                 return true;
             }
             return false;
@@ -28,7 +28,7 @@ public class NameRepository implements Container {
 
         @Override
         public Object next() {
-            if(this.hasNext()){
+            if (this.hasNext()) {
                 return names.get(index++);
             }
             return null;

@@ -98,8 +98,7 @@ public class CollectionsTask {
             for (int i = 0; i < elementsCount; i++) {
                 ((LinkedList<Integer>) inputList).addFirst(random.nextInt());
             }
-        }
-        else if (inputList instanceof ArrayList) {
+        } else if (inputList instanceof ArrayList) {
             for (int i = 0; i < elementsCount; i++) {
                 inputList.add(0, random.nextInt());
             }
@@ -118,8 +117,7 @@ public class CollectionsTask {
             for (int i = 0; i < elementsCount; i++) {
                 ((LinkedList<Integer>) inputList).addLast(random.nextInt());
             }
-        }
-        else if (inputList instanceof ArrayList) {
+        } else if (inputList instanceof ArrayList) {
             inputList.add(random.nextInt());
         }
     }
@@ -144,10 +142,11 @@ public class CollectionsTask {
     }
 
     private void deleteListElementFromEnd(List<Integer> inputList) {
-        while(!inputList.isEmpty()) {
+        while (!inputList.isEmpty()) {
             inputList.remove(inputList.size() - 1);
         }
     }
+
     private void getListElementFromStart(List<Integer> inputList) {
         for (int i = 0; i < inputList.size(); i++) {
             inputList.get(i);

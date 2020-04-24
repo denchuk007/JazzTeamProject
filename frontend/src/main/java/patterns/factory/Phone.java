@@ -1,4 +1,4 @@
 package patterns.factory;
 
-public class Phone extends Product{
+public class Phone extends Product {
 }

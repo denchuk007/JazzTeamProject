@@ -21,8 +21,8 @@ public class CollectionsUtil {
         String tagsString = null;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             StringBuilder stringBuilder = new StringBuilder();
-            while(bufferedReader.ready()) {
-                stringBuilder.append((char)bufferedReader.read());
+            while (bufferedReader.ready()) {
+                stringBuilder.append((char) bufferedReader.read());
             }
             tagsString = stringBuilder.toString();
         } catch (IOException ex) {

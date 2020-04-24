@@ -20,13 +20,13 @@ public class RequestsTest {
 
     @Test
     public void getResponseFromGetRequest() throws IOException {
-        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL,"GET",
+        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "GET",
                 accessToken).getResponseCode(), 200);
     }
 
     @Test
     public void getResponseFromPostRequest() throws IOException {
-        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL,"POST",
+        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "POST",
                 accessToken).getResponseCode(), 200);
     }
 

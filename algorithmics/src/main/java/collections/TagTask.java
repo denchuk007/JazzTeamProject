@@ -23,10 +23,10 @@ public class TagTask {
         while (tagMatcher.find()) {
             String foundTag = tagsLines.substring(tagMatcher.start(), tagMatcher.end());
             if (tagIsOpen(foundTag, tag) && closeTagIsExists) {
-                    tagsDeque.add(tagsLines.substring(openTagIndex, tagMatcher.end() - 2)
-                            .replaceAll(LINE_SEPARATOR, ""));
-                    closeTagIsExists = false;
-                    openTagIndex = getOpenTagStartIndex(tagMatcher);
+                tagsDeque.add(tagsLines.substring(openTagIndex, tagMatcher.end() - 2)
+                        .replaceAll(LINE_SEPARATOR, ""));
+                closeTagIsExists = false;
+                openTagIndex = getOpenTagStartIndex(tagMatcher);
             }
             if (tagIsClose(foundTag)) {
                 closeTagIsExists = true;
