@@ -71,7 +71,7 @@ public class TagTask {
         return correctTags.toString();
     }
 
-    private void errorsVerification(String... inputLines) throws NullPointerException {
+    private void errorsVerification(String... inputLines) {
         for (String inputLine : inputLines) {
             if (!lineIsCorrect(inputLine)) {
                 throw new NullPointerException("String is not correct");
@@ -79,9 +79,9 @@ public class TagTask {
         }
     }
 
-    private boolean lineIsCorrect(String... inputStrings) {
-        for (String inputString : inputStrings) {
-            if (inputString.length() == 0) {
+    private boolean lineIsCorrect(String... inputLines) {
+        for (String inputLine : inputLines) {
+            if (inputLine.length() == 0) {
                 return false;
             }
         }

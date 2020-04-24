@@ -17,7 +17,7 @@ public class ArrayReverseTask {
         return resultArray;
     }
 
-    private void errorVerification(int[] array) throws NullPointerException {
+    private void errorVerification(int[] array) {
         if (array == null) {
             throw new NullPointerException();
         }

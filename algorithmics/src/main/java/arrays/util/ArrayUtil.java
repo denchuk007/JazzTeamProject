@@ -2,6 +2,10 @@ package arrays.util;
 
 public class ArrayUtil {
 
+    private ArrayUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static int[] swap(int[] originalArray, int firstIndex, int secondIndex) {
         int[] resultArray = originalArray.clone();
         int temp = resultArray[firstIndex];

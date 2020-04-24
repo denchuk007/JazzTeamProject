@@ -6,14 +6,10 @@ $(document).ready(function() {
                 inputValue : $('#inputValue').val(),
             },
             success : function(responseText) {
-                //$('#ajaxGetUserServletResponse').text(responseText);
                 $('#inputValue').val(responseText);
-                //$('#inputValue').val('');
             },
             error : function (responseText) {
                 $('#inputValue').val(responseText);
-                //$('#ajaxGetUserServletResponse').text(responseText);
-                //$('#inputValue').val('');
             }
         });
     });

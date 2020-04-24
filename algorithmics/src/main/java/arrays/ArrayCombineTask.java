@@ -11,7 +11,7 @@ public class ArrayCombineTask {
         return ArrayUtil.combineArrays(sortedFirstArray, sortedSecondArray);
     }
 
-    private void errorVerification(int[] ...arrays) throws NullPointerException {
+    private void errorVerification(int[] ...arrays) {
         for (int[] array : arrays) {
             if (array == null) {
                 throw new NullPointerException();

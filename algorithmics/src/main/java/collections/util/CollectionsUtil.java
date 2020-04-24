@@ -10,6 +10,10 @@ import java.util.logging.Logger;
 
 public class CollectionsUtil {
 
+    private CollectionsUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     private static final SecureRandom random = new SecureRandom();
     private static final Logger LOGGER = Logger.getLogger(CollectionsUtil.class.getName());
 
