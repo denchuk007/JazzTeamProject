@@ -12,10 +12,7 @@ public class Server {
     }
 
     public boolean logIn(String email, String password) {
-        if (middleware.check(email, password)) {
-            return true;
-        }
-        return false;
+        return middleware.check(email, password);
     }
 
     public void register(String email, String password) {

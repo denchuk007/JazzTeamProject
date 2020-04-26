@@ -8,19 +8,19 @@ import java.util.LinkedList;
 
 public class IteratorTest {
 
-    private static LinkedList<String> expectedNames;
     private static LinkedList<String> actualNames;
+    private static LinkedList<String> expectedNames;
     private static NameRepository namesRepository;
 
     @BeforeClass
     public static void initialize() {
         namesRepository = new NameRepository();
-        expectedNames = new LinkedList<>();
         actualNames = new LinkedList<>();
-        actualNames.addLast("Robert");
-        actualNames.addLast("John");
-        actualNames.addLast("Julie");
-        actualNames.addLast("Lora");
+        expectedNames = new LinkedList<>();
+        expectedNames.addLast("Robert");
+        expectedNames.addLast("John");
+        expectedNames.addLast("Julie");
+        expectedNames.addLast("Lora");
         namesRepository.addName("Robert");
         namesRepository.addName("John");
         namesRepository.addName("Julie");
@@ -30,7 +30,7 @@ public class IteratorTest {
     @Test
     public void iteratorPattern() {
         for (Iterator iterator = namesRepository.getIterator(); iterator.hasNext(); ) {
-            expectedNames.addLast((String) iterator.next());
+            actualNames.addLast((String) iterator.next());
         }
         Assert.assertEquals(expectedNames, actualNames);
     }

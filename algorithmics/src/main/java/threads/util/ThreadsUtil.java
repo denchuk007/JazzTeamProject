@@ -15,7 +15,7 @@ public class ThreadsUtil {
 
     }
 
-    private final static Logger LOGGER = Logger.getLogger(ThreadsUtil.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ThreadsUtil.class.getName());
 
     public static double[][] readMatrixFromFile(String filePath) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {

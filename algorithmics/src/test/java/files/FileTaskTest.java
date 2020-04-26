@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class FileTaskTest {
 
@@ -17,10 +18,10 @@ public class FileTaskTest {
     private static final String COMBINED_LINES_FILE_PATH = FILES_PATH + "combinedLines";
     private static final String EMPTY_FILE_PATH = FILES_PATH + "empty";
     private static final String COMBINED_LINES_FROM_EMPTY_FILE_PATH = FILES_PATH + "combinedLinesFromEmptyFile";
-    private static LinkedList<String> firstListWithEmptyLines;
-    private static LinkedList<String> secondListWithEmptyLines;
-    private static LinkedList<String> editedLinesWithSameNotExpected;
-    private static LinkedList<String> combinedLinesFromEmptyFile;
+    private static List<String> firstListWithEmptyLines;
+    private static List<String> secondListWithEmptyLines;
+    private static List<String> editedLinesWithSameNotExpected;
+    private static List<String> combinedLinesFromEmptyFile;
 
     @BeforeClass
     public static void initialize() {
@@ -33,9 +34,9 @@ public class FileTaskTest {
 
     @Test
     public void restoreOriginalFile() throws SameNotExpectedException, SameTwiceInARowException {
-        LinkedList<String> combinedLines = FilesUtil.readFromFile(COMBINED_LINES_FILE_PATH);
-        LinkedList<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
-        LinkedList<String> editedLines = FilesUtil.readFromFile(EDITED_LINES_FILE_PATH);
+        List<String> combinedLines = FilesUtil.readFromFile(COMBINED_LINES_FILE_PATH);
+        List<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
+        List<String> editedLines = FilesUtil.readFromFile(EDITED_LINES_FILE_PATH);
         Assert.assertEquals(fileTask.restoreOriginalFile(originalLines, editedLines), combinedLines);
     }
 
@@ -52,13 +53,13 @@ public class FileTaskTest {
 
     @Test(expected = SameTwiceInARowException.class)
     public void restoreOriginalFileWithSameTwiceInARowException() throws SameNotExpectedException, SameTwiceInARowException {
-        LinkedList<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
+        List<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
         fileTask.restoreOriginalFile(originalLines, originalLines);
     }
 
     @Test(expected = SameNotExpectedException.class)
     public void restoreOriginalFileWithSameNotExpectedException() throws SameNotExpectedException, SameTwiceInARowException {
-        LinkedList<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
+        List<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
         fileTask.restoreOriginalFile(originalLines, editedLinesWithSameNotExpected);
     }
 }

@@ -5,14 +5,15 @@ import java.util.List;
 
 public class FileTask {
 
-    public List<String> restoreOriginalFile(LinkedList<String> originalLines, LinkedList<String> editedLines) throws SameTwiceInARowException, SameNotExpectedException {
+    public List<String> restoreOriginalFile(List<String> originalLines, List<String> editedLines)
+            throws SameTwiceInARowException, SameNotExpectedException {
         listNotNullVerification(originalLines, editedLines);
         if (listAreEmptyAndEqual(originalLines, editedLines)) {
             List<String> combinedLines = new LinkedList<>();
             combinedLines.add(Status.SAME.name());
             return combinedLines;
         }
-        LinkedList<String> combinedLines = combineLines(originalLines, editedLines);
+        List<String> combinedLines = combineLines((LinkedList<String>) originalLines, (LinkedList<String>) editedLines);
         sameTwiceInARowVerification(combinedLines);
         sameNotExpectedVerification(combinedLines);
         return combinedLines;
@@ -24,15 +25,15 @@ public class FileTask {
         REMOVED
     }
 
-    private LinkedList<String> combineLines(LinkedList<String> originalLines, LinkedList<String> editedLines) {
-        LinkedList<String> combinedLines = new LinkedList<>();
+    private List<String> combineLines(LinkedList<String> originalLines, LinkedList<String> editedLines) {
+        List<String> combinedLines = new LinkedList<>();
         while (!originalLines.isEmpty() || !editedLines.isEmpty()) {
             if (editedLines.isEmpty()) {
                 combinedLines.add(fillCorrectRow(originalLines.getFirst(), Status.REMOVED));
-                break;
+                return combinedLines;
             } else if (originalLines.isEmpty()) {
                 combinedLines.add(fillCorrectRow(editedLines.getFirst(), Status.ADDED));
-                break;
+                return combinedLines;
             } else {
                 String currentRow = getCorrectRow(originalLines, editedLines);
                 combinedLines.add(currentRow);
@@ -48,7 +49,6 @@ public class FileTask {
             editedLines.removeFirst();
             return correctRow;
         }
-
         if (originalLines.getFirst().equals(editedLines.get(1))) {
             String correctRow = fillCorrectRow(editedLines.getFirst(), Status.ADDED);
             editedLines.removeFirst();
@@ -61,33 +61,34 @@ public class FileTask {
     }
 
     private String fillCorrectRow(String row, Status status) {
+        String stringFormat = "%s %s";
         switch (status) {
             case SAME:
-                return String.format("%s %s", Status.SAME, row);
+                return String.format(stringFormat, Status.SAME, row);
             case ADDED:
-                return String.format("%s %s", Status.ADDED, row);
+                return String.format(stringFormat, Status.ADDED, row);
             case REMOVED:
-                return String.format("%s %s", Status.REMOVED, row);
+                return String.format(stringFormat, Status.REMOVED, row);
 
             default:
                 return null;
         }
     }
 
-    private boolean listAreEmptyAndEqual(LinkedList<String> firstLines, LinkedList<String> secondLines) {
-        return firstLines.size() == 0 && secondLines.size() == 0;
+    private boolean listAreEmptyAndEqual(List<String> firstLines, List<String> secondLines) {
+        return firstLines.isEmpty() && secondLines.isEmpty();
     }
 
     @SafeVarargs
-    private final void listNotNullVerification(LinkedList<String>... lists) throws NullPointerException {
-        for (LinkedList<String> list : lists) {
+    private final void listNotNullVerification(List<String>... lists) {
+        for (List<String> list : lists) {
             if (list == null) {
                 throw new NullPointerException("Expected list is null");
             }
         }
     }
 
-    private void sameTwiceInARowVerification(LinkedList<String> combinedLines) throws SameTwiceInARowException {
+    private void sameTwiceInARowVerification(List<String> combinedLines) throws SameTwiceInARowException {
         for (int i = 0; i < combinedLines.size() - 1; i++) {
             if (combinedLines.get(i).startsWith(Status.SAME.name()) &&
                     combinedLines.get(i + 1).startsWith(Status.SAME.name())) {
@@ -96,7 +97,7 @@ public class FileTask {
         }
     }
 
-    private void sameNotExpectedVerification(LinkedList<String> combinedLines) throws SameNotExpectedException {
+    private void sameNotExpectedVerification(List<String> combinedLines) throws SameNotExpectedException {
         for (int i = 0; i < combinedLines.size() - 1; i++) {
             if (!combinedLines.get(i).startsWith(Status.SAME.name()) &&
                     !combinedLines.get(i + 1).startsWith(Status.SAME.name())) {

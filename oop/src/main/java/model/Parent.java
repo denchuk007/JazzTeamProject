@@ -32,6 +32,6 @@ public class Parent extends User implements Observer {
     public void handleEvent(Pupil pupil, Mark mark) {
         notifications.add("Message for " + this.getName() + " | New mark from " + pupil.getName() + ": Date(" +
                 mark.getDate() + "), Subject(" + mark.getSubject().getTitle() + "), Mark(" +
-                mark.getMark() + "), Teacher(" + mark.getTeacher().getName() + ")");
+                mark.getValue() + "), Teacher(" + mark.getTeacher().getName() + ")");
     }
 }

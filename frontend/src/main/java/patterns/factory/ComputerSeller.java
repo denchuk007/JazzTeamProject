@@ -1,6 +1,6 @@
 package patterns.factory;
 
-public class ComputerSeller extends ProductSeller {
+public class ComputerSeller implements ProductSeller {
 
     @Override
     public Product sellProduct() {

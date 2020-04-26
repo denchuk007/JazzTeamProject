@@ -1,7 +1,5 @@
 package threads;
 
-import threads.util.ThreadsUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -9,9 +7,10 @@ import java.util.logging.Logger;
 
 public class ThreadTask {
 
-    private final static Logger LOGGER = Logger.getLogger(ThreadsUtil.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ThreadTask.class.getName());
 
-    public double[][] multiplyMatrix(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
+    public double[][] multiplyMatrix(double[][] firstMatrix, double[][] secondMatrix)
+            throws MatricesAreNotComparableException {
         errorVerification(firstMatrix, secondMatrix);
         double[][] resultMatrix = new double[secondMatrix.length][secondMatrix[0].length];
         for (int i = 0; i < secondMatrix.length; i++) {
@@ -26,7 +25,8 @@ public class ThreadTask {
         return resultMatrix;
     }
 
-    public double[][] multiplyMatrixInMultithreading(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
+    public double[][] multiplyMatrixInMultithreading(double[][] firstMatrix, double[][] secondMatrix)
+            throws MatricesAreNotComparableException {
         errorVerification(firstMatrix, secondMatrix);
         double[][] resultMatrix = new double[secondMatrix.length][secondMatrix[0].length];
         List<RowAdderThread> threadList = new ArrayList<>();
@@ -51,7 +51,8 @@ public class ThreadTask {
         }
     }
 
-    public long getMatrixMultiplyTime(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
+    public long getMatrixMultiplyTime(double[][] firstMatrix, double[][] secondMatrix)
+            throws MatricesAreNotComparableException {
         long startTime = System.currentTimeMillis();
         multiplyMatrix(firstMatrix, secondMatrix);
         long endTime = System.currentTimeMillis();
@@ -59,7 +60,7 @@ public class ThreadTask {
     }
 
     public long getMatrixMultiplyInMultithreadingTime(double[][] firstMatrix, double[][] secondMatrix)
-            throws Exception {
+            throws MatricesAreNotComparableException {
         long startTime = System.currentTimeMillis();
         multiplyMatrixInMultithreading(firstMatrix, secondMatrix);
         long endTime = System.currentTimeMillis();
@@ -70,7 +71,8 @@ public class ThreadTask {
         return firstMatrix[0].length == secondMatrix.length;
     }
 
-    private void errorVerification(double[][] firstMatrix, double[][] secondMatrix) throws Exception {
+    private void errorVerification(double[][] firstMatrix, double[][] secondMatrix)
+            throws MatricesAreNotComparableException {
         if (firstMatrix == null || secondMatrix == null) {
             throw new NullPointerException("One of matrix is null");
         } else if (!isMatricesAreComparable(firstMatrix, secondMatrix)) {

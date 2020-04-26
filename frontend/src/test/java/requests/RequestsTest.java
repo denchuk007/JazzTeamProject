@@ -20,45 +20,45 @@ public class RequestsTest {
 
     @Test
     public void getResponseFromGetRequest() throws IOException {
-        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "GET",
-                accessToken).getResponseCode(), 200);
+        Assert.assertEquals(200, request.getResponseFromRequest(Constants.FILES_API_KEY_URL,
+                "GET", accessToken).getResponseCode());
     }
 
     @Test
     public void getResponseFromPostRequest() throws IOException {
-        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "POST",
-                accessToken).getResponseCode(), 200);
+        Assert.assertEquals(200, request.getResponseFromRequest(Constants.FILES_API_KEY_URL,
+                "POST", accessToken).getResponseCode());
     }
 
     @Test
-    public void getResponseFromPutRequest() throws IOException, URISyntaxException, ExpressionNotFoundException {
-        Assert.assertEquals(request.getResponseFromRequest(request.getFileId(accessToken),
-                accessToken).getStatusLine().getStatusCode(), 200);
+    public void getResponseFromPutRequest() throws IOException, ExpressionNotFoundException, URISyntaxException {
+        Assert.assertEquals(200, request.getResponseFromRequest(request.getFileId(accessToken),
+                accessToken).getStatusLine().getStatusCode());
     }
 
     @Test
     public void getResponseFromDeleteRequest() throws IOException, ExpressionNotFoundException {
         String fileId = request.getFileId(accessToken);
         String url = Constants.FILES_URL + fileId + Constants.API_KEY;
-        Assert.assertEquals(request.getResponseFromRequest(url, "DELETE",
-                accessToken).getResponseCode(), 204);
+        Assert.assertEquals(204, request.getResponseFromRequest(url, "DELETE",
+                accessToken).getResponseCode());
     }
 
     @Test
     public void getResponseFromGetRequestWithIncorrectAccessToken() throws IOException {
-        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "GET",
-                "").getResponseCode(), 401);
+        Assert.assertEquals(401, request.getResponseFromRequest(Constants.FILES_API_KEY_URL,
+                "GET", "").getResponseCode());
     }
 
     @Test
     public void getResponseFromGetRequestWithNullAccessToken() throws IOException {
-        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL, "GET",
-                null).getResponseCode(), 401);
+        Assert.assertEquals(401, request.getResponseFromRequest(Constants.FILES_API_KEY_URL,
+                "GET", null).getResponseCode());
     }
 
     @Test
     public void getResponseFromDeleteRequestWithIncorrectFileId() throws IOException {
-        Assert.assertEquals(request.getResponseFromRequest(Constants.FILES_API_KEY_URL,
-                "DELETE", accessToken).getResponseCode(), 404);
+        Assert.assertEquals(404, request.getResponseFromRequest(Constants.FILES_API_KEY_URL,
+                "DELETE", accessToken).getResponseCode());
     }
 }

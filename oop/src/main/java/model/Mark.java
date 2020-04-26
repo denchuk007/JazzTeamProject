@@ -5,14 +5,14 @@ import java.time.LocalDate;
 public class Mark {
 
     private LocalDate date;
-    private short mark;
+    private short value;
     private Subject subject;
     private Teacher teacher;
 
-    public Mark(Teacher teacher, Subject subject, short mark) {
+    public Mark(Teacher teacher, Subject subject, short value) {
         this.teacher = teacher;
         this.subject = subject;
-        this.mark = mark;
+        this.value = value;
         date = LocalDate.now();
     }
 
@@ -20,8 +20,8 @@ public class Mark {
         return date;
     }
 
-    public short getMark() {
-        return mark;
+    public short getValue() {
+        return value;
     }
 
     public Subject getSubject() {

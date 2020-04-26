@@ -32,5 +32,4 @@ public class ChainOfResponsbilityTest {
         String password = "user_pass";
         Assert.assertFalse(server.logIn(email, password));
     }
-
 }

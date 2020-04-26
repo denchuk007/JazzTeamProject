@@ -19,7 +19,7 @@ public class ThrottlingMiddleware extends Middleware {
         request++;
 
         if (request > requestPerMinute) {
-            Thread.currentThread().stop();
+            Thread.currentThread().interrupt();
         }
         return checkNext(email, password);
     }

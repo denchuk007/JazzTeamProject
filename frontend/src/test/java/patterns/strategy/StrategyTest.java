@@ -22,19 +22,19 @@ public class StrategyTest {
     @Test
     public void operationAdd() {
         context = new Context(new OperationAdd());
-        Assert.assertEquals(context.executeStrategy(firstNumber, secondNumber), addResult);
+        Assert.assertEquals(addResult, context.executeStrategy(firstNumber, secondNumber));
     }
 
     @Test
     public void operationSubstract() {
         context = new Context(new OperationSubstract());
-        Assert.assertEquals(context.executeStrategy(firstNumber, secondNumber), substractResult);
+        Assert.assertEquals(substractResult, context.executeStrategy(firstNumber, secondNumber));
     }
 
     @Test
     public void operationMultiply() {
         context = new Context(new OperationMultiply());
-        Assert.assertEquals(context.executeStrategy(firstNumber, secondNumber), multiplyResult);
+        Assert.assertEquals(multiplyResult, context.executeStrategy(firstNumber, secondNumber));
     }
 }
 

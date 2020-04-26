@@ -1,4 +1,4 @@
 package patterns.factory;
 
-public class Computer extends Product {
+public class Computer implements Product {
 }

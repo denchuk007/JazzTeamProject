@@ -15,27 +15,34 @@ import java.util.regex.Pattern;
 
 public class Requests {
 
-    public HttpURLConnection getResponseFromRequest(String stringUrl, String requestMethod, String accessToken) throws IOException {
+    private static final String APPLICATION_JSON = "application/json";
+
+    public HttpURLConnection getResponseFromRequest(String stringUrl, String requestMethod, String accessToken)
+            throws IOException {
         URL url = new URL(stringUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.addRequestProperty("Accept", "application/json");
+        connection.addRequestProperty("Accept", APPLICATION_JSON);
         connection.addRequestProperty("Authorization", "Bearer " + accessToken);
         connection.setRequestMethod(requestMethod);
         if (requestMethod.equals("POST")) {
-            connection.addRequestProperty("Content-Type", "application/json");
+            connection.addRequestProperty("Content-Type", APPLICATION_JSON);
             connection.setDoOutput(true);
             connection.setFixedLengthStreamingMode(0);
         }
         return connection;
     }
 
-    public CloseableHttpResponse getResponseFromRequest(String fileId, String accessToken) throws IOException, URISyntaxException {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPatch httpPatch = new HttpPatch(new URI(Constants.FILES_URL + fileId + Constants.API_KEY));
-        httpPatch.addHeader("Authorization", "Bearer " + accessToken);
-        httpPatch.addHeader("Accept", "application/json");
-        httpPatch.addHeader("Content-Type", "application/json");
-        return httpClient.execute(httpPatch);
+    public CloseableHttpResponse getResponseFromRequest(String fileId, String accessToken)
+            throws IOException, URISyntaxException {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            HttpPatch httpPatch = new HttpPatch(new URI(Constants.FILES_URL + fileId + Constants.API_KEY));
+            httpPatch.addHeader("Authorization", "Bearer " + accessToken);
+            httpPatch.addHeader("Accept", APPLICATION_JSON);
+            httpPatch.addHeader("Content-Type", APPLICATION_JSON);
+            return httpClient.execute(httpPatch);
+        } catch (IOException ex) {
+            throw new IOException(ex.getMessage());
+        }
     }
 
     public String getFileId(String accessToken) throws IOException, ExpressionNotFoundException {
@@ -57,7 +64,7 @@ public class Requests {
         Matcher matcher = pattern.matcher(connectionResponse);
         if (matcher.find()) {
             String accessToken = connectionResponse.substring(matcher.start(), matcher.end() - 1);
-            return accessToken.substring(accessToken.lastIndexOf("\"") + 1);
+            return accessToken.substring(accessToken.lastIndexOf('\"') + 1);
         }
         throw new ExpressionNotFoundException("Expression not found");
     }
@@ -68,7 +75,7 @@ public class Requests {
         Matcher matcher = pattern.matcher(connectionResponse);
         if (matcher.find()) {
             String fileId = connectionResponse.substring(matcher.start(), matcher.end() - 1);
-            return "/" + fileId.substring(fileId.lastIndexOf("\"") + 1);
+            return "/" + fileId.substring(fileId.lastIndexOf('\"') + 1);
         }
         throw new ExpressionNotFoundException("Expression not found");
     }

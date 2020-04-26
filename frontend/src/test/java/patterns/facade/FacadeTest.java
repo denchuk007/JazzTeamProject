@@ -15,16 +15,16 @@ public class FacadeTest {
 
     @Test
     public void drawCircle() {
-        Assert.assertEquals(shapeMaker.drawCircle(), "Circle");
+        Assert.assertEquals("Circle", shapeMaker.drawCircle());
     }
 
     @Test
     public void drawRectangle() {
-        Assert.assertEquals(shapeMaker.drawRectangle(), "Rectangle");
+        Assert.assertEquals("Rectangle", shapeMaker.drawRectangle());
     }
 
     @Test
     public void drawSquare() {
-        Assert.assertEquals(shapeMaker.drawSquare(), "Square");
+        Assert.assertEquals("Square", shapeMaker.drawSquare());
     }
 }

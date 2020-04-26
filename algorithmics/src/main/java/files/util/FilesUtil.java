@@ -14,7 +14,7 @@ public class FilesUtil {
 
     private static final Logger LOGGER = Logger.getLogger(FilesUtil.class.getName());
 
-    public static LinkedList<String> readFromFile(String fileName) {
+    public static List<String> readFromFile(String fileName) {
         LinkedList<String> list = new LinkedList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while (bufferedReader.ready()) {

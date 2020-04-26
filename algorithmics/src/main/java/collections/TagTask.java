@@ -57,7 +57,7 @@ public class TagTask {
 
     private String findCorrectTags(String tag, ArrayDeque<String> tagsDeque) {
         StringBuilder correctTags = new StringBuilder();
-        Pattern tagPattern = Pattern.compile("<\\w+>|<\\w+ ");
+        Pattern tagPattern = Pattern.compile("<\\w+[\\s>]");
         for (String element : tagsDeque) {
             Matcher tagMatcher = tagPattern.matcher(element);
             boolean isFind = tagMatcher.find();

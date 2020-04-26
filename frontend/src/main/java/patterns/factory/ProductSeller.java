@@ -1,6 +1,6 @@
 package patterns.factory;
 
-public abstract class ProductSeller {
+public interface ProductSeller {
 
-    public abstract Product sellProduct();
+    Product sellProduct();
 }

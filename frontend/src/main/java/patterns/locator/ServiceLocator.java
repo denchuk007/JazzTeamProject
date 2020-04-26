@@ -2,6 +2,10 @@ package patterns.locator;
 
 public class ServiceLocator {
 
+    private ServiceLocator() {
+
+    }
+
     private static Cache cache;
 
     static {
@@ -20,8 +24,8 @@ public class ServiceLocator {
         }
 
         InitialContext context = new InitialContext();
-        Service ServiceOne = (Service) context.lookup(name);
-        cache.addService(ServiceOne);
-        return ServiceOne;
+        Service serviceOne = (Service) context.lookup(name);
+        cache.addService(serviceOne);
+        return serviceOne;
     }
 }

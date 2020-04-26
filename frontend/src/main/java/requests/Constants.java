@@ -2,6 +2,10 @@ package requests;
 
 public class Constants {
 
+    private Constants() {
+
+    }
+
     public static final String FILES_URL = "https://www.googleapis.com/drive/v3/files";
     public static final String API_KEY = "?key=AIzaSyCkXwO5ehWPp4LL_Pmym05M--aFbKdkMS4";
     public static final String ACCESS_TOKEN_DATA = "client_secret=Uq-N8UbQbVWUmNTLFuaLrxyL&grant_type=refresh_token&" +
