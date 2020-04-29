@@ -135,11 +135,11 @@ public class CollectionsTask {
     }
 
     private void deleteListElementFromTheMiddle(List<Integer> inputList, int amountOfElements) {
-        int deletedamountOfElements = 0;
-        while(deletedamountOfElements < amountOfElements) {
+        int amountOfDeletedElements = 0;
+        while(amountOfDeletedElements < amountOfElements) {
             int middleIndex = inputList.size() / 2;
             inputList.remove(middleIndex);
-            deletedamountOfElements++;
+            amountOfDeletedElements++;
         }
     }
 
