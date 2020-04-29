@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 public class ThreadsUtil {
 
     private ThreadsUtil() {
-
     }
 
     private static final Logger LOGGER = Logger.getLogger(ThreadsUtil.class.getName());

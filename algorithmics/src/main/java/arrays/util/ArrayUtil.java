@@ -3,7 +3,6 @@ package arrays.util;
 public class ArrayUtil {
 
     private ArrayUtil() {
-
     }
 
     public static int[] swap(int[] originalArray, int firstIndex, int secondIndex) {

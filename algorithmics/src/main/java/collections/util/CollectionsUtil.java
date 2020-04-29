@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 public class CollectionsUtil {
 
     private CollectionsUtil() {
-
     }
 
     private static final SecureRandom random = new SecureRandom();

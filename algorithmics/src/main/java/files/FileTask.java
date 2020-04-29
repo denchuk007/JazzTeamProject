@@ -7,8 +7,8 @@ public class FileTask {
 
     public List<String> restoreOriginalFile(List<String> originalLines, List<String> editedLines)
             throws SameTwiceInARowException, SameNotExpectedException {
-        isListNotNull(originalLines, editedLines);
-        if (listAreEmptyAndEqual(originalLines, editedLines)) {
+        listNotNullVerification(originalLines, editedLines);
+        if (isListAreEmptyAndEqual(originalLines, editedLines)) {
             List<String> combinedLines = new LinkedList<>();
             combinedLines.add(Status.SAME.name());
             return combinedLines;
@@ -75,12 +75,12 @@ public class FileTask {
         }
     }
 
-    private boolean listAreEmptyAndEqual(List<String> firstLines, List<String> secondLines) {
+    private boolean isListAreEmptyAndEqual(List<String> firstLines, List<String> secondLines) {
         return firstLines.isEmpty() && secondLines.isEmpty();
     }
 
     @SafeVarargs
-    private final void isListNotNull(List<String>... lists) {
+    private final void listNotNullVerification(List<String>... lists) {
         for (List<String> list : lists) {
             if (list == null) {
                 throw new NullPointerException("Expected list is null");

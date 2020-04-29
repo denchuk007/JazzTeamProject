@@ -64,7 +64,7 @@ public class TagTask {
             if (isFind) {
                 String openTag = element.substring(0, tagMatcher.end());
                 if (openTag.equals("<" + tag + " ") || openTag.equals("<" + tag + ">")) {
-                    correctTags.append(element).append(System.getProperty("line.separator"));
+                    correctTags.append(element).append(LINE_SEPARATOR);
                 }
             }
         }
