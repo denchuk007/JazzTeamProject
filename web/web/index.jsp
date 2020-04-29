@@ -10,15 +10,15 @@
 </head>
 <style>
     .wrapper {
-        margin: 0 auto;
-        width: 250px;
+        margin: 150px auto;
+        width: 200px;
     }
 
     .buttons input {
         margin: 0 auto;
         overflow: hidden;
-        width: 50px;
-        height: 50px;
+        width: 100%;
+        height: 40px;
         border-radius: 5px;
         font-size: 24px;
     }
@@ -27,7 +27,7 @@
 <form name="calc" class="wrapper">
     <table class="main">
         <tr>
-            <td colspan="3"><input type="text" name="display" id="inputValue"></td>
+            <td colspan="4" style="text-align:center;"><input type="text" name="display" id="inputValue" style="font-size: 15px"></td>
         </tr>
 
         <tr class="buttons">
@@ -51,8 +51,11 @@
         <tr class="buttons">
             <td><input type="reset" value="c" OnClick="display.value += ''" id="deleteButton"></td>
             <td><input type="button" value="0" OnClick="display.value += 0"></td>
-            <td><input type="button" value="=" OnClick="" id="equalsButton"></td>
+            <td><input type="button" value="." OnClick="display.value += '.'"></td>
             <td><input type="button" value="/" OnClick="display.value += '/'"></td>
+        </tr>
+        <tr class="buttons">
+            <td colspan="4" style="text-align:center;"><input type="button" value="=" OnClick="" id="equalsButton"></td>
         </tr>
     </table>
 </form>

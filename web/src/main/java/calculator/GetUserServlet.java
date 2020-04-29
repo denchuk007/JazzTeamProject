@@ -24,13 +24,13 @@ public class GetUserServlet extends HttpServlet {
             inputValueVerification(inputLine);
             List<String> digits = new ArrayList<>(Arrays.asList(inputLine.split("[-+/x]")));
             List<String> operations = new ArrayList<>(Arrays.asList(inputLine.split("\\d+\\.\\d+|\\d+")));
-            response.getWriter().write(String.valueOf(getResult(operations, digits)));
+            response.getWriter().write(getResultOfFullCalculation(operations, digits));
         } catch (ExpressionNotFoundException | DividingByZeroException e) {
             response.getWriter().write(e.getMessage());
         }
     }
 
-    public String getResult(List<String> operations, List<String> digits)
+    public String getResultOfFullCalculation(List<String> operations, List<String> digits)
             throws ExpressionNotFoundException, DividingByZeroException {
         if (minusInStartOfInputValue(operations)) {
             digits.remove(0);
@@ -90,11 +90,13 @@ public class GetUserServlet extends HttpServlet {
         if (isMultiplyOrDividingOperation(operations)) {
             if (getOperation(operations).equals(MULTIPLY)) {
                 index = getIndexOfOperation(operations, MULTIPLY);
-                return new Pair<>(index, Double.parseDouble(digits.get(index)) * Double.parseDouble(digits.get(index + 1)));
+                return new Pair<>(index, Double.parseDouble(digits.get(index)) *
+                        Double.parseDouble(digits.get(index + 1)));
             } else if (getOperation(operations).equals(DIVIDE)) {
                 index = getIndexOfOperation(operations, DIVIDE);
                 dividingByZeroVerification(Double.parseDouble(digits.get(index + 1)));
-                return new Pair<>(index, Double.parseDouble(digits.get(index)) / Double.parseDouble(digits.get(index + 1)));
+                return new Pair<>(index, Double.parseDouble(digits.get(index)) /
+                        Double.parseDouble(digits.get(index + 1)));
             }
         } else {
             return new Pair<>(0, getResultFromPlusOrMinusOperation(operations, digits));
@@ -116,7 +118,7 @@ public class GetUserServlet extends HttpServlet {
         Pattern pattern = Pattern.compile("^[-]?\\d+\\.?(\\d+)?([-+/x]\\d+\\.?(\\d+)?)+$");
         Matcher matcher = pattern.matcher(inputLine);
         if (!matcher.find()) {
-            throw new ExpressionNotFoundException("Input line was not correct format");
+            throw new ExpressionNotFoundException("Incorrect format");
         }
     }
 }
