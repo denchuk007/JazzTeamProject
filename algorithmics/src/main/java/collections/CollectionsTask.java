@@ -15,85 +15,85 @@ public class CollectionsTask {
         random = new SecureRandom();
     }
 
-    public long getFillTimeToStart(List<Integer> inputList, int amountOfElements) {
+    public long getFillTimeToTheBeginning(List<Integer> inputList, int amountOfElements) {
         long startTime = System.currentTimeMillis();
-        fillListRandomToStart(inputList, amountOfElements);
+        fillListRandomToTheBeginning(inputList, amountOfElements);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getFillTimeToMiddle(List<Integer> inputList, int amountOfElements) {
+    public long getFillTimeInTheMiddle(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        fillListRandomToMiddle(inputList, amountOfElements);
+        fillListRandomInTheMiddle(inputList, amountOfElements);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getFillTimeToEnd(List<Integer> inputList, int amountOfElements) {
+    public long getFillTimeToTheEnd(List<Integer> inputList, int amountOfElements) {
         long startTime = System.currentTimeMillis();
-        fillListRandomToEnd(inputList, amountOfElements);
+        fillListRandomToTheEnd(inputList, amountOfElements);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getDeleteTimeFromStart(List<Integer> inputList, int amountOfElements) {
+    public long getDeleteTimeFromTheBeginning(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        deleteListElementFromStart(inputList);
+        deleteListElementFromTheBeginning(inputList);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getDeleteTimeFromMiddle(List<Integer> inputList, int amountOfElements) {
+    public long getDeleteTimeFromTheMiddle(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        deleteListElementFromMiddle(inputList, amountOfElements);
+        deleteListElementFromTheMiddle(inputList, amountOfElements);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getDeleteTimeFromEnd(List<Integer> inputList, int amountOfElements) {
+    public long getDeleteTimeFromTheEnd(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        deleteListElementFromEnd(inputList);
+        deleteListElementFromTheEnd(inputList);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getListElementFromStartTime(List<Integer> inputList, int amountOfElements) {
+    public long getListElementFromTheBeginningTime(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        getListElementFromStart(inputList);
+        getListElementFromTheBeginning(inputList);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getListElementFromMiddleTime(List<Integer> inputList, int amountOfElements) {
+    public long getListElementFromTheMiddleTime(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        getListElementFromMiddle(inputList);
+        getListElementFromTheMiddle(inputList);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getListElementFromEndTime(List<Integer> inputList, int amountOfElements) {
+    public long getListElementFromTheEndTime(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        getListElementFromEnd(inputList);
+        getListElementFromTheEnd(inputList);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    public long getSetListElementToMiddleTime(List<Integer> inputList, int amountOfElements) {
+    public long getTimeToSetListElementsInTheMiddle(List<Integer> inputList, int amountOfElements) {
         CollectionsUtil.fillListRandom(inputList, amountOfElements);
         long startTime = System.currentTimeMillis();
-        setListElementToMiddle(inputList);
+        setListElementInTheMiddle(inputList);
         long endTime = System.currentTimeMillis();
         return endTime - startTime;
     }
 
-    private void fillListRandomToStart(List<Integer> inputList, int amountOfElements) {
+    private void fillListRandomToTheBeginning(List<Integer> inputList, int amountOfElements) {
         if (inputList instanceof LinkedList) {
             for (int i = 0; i < amountOfElements; i++) {
                 ((LinkedList<Integer>) inputList).addFirst(random.nextInt());
@@ -105,14 +105,14 @@ public class CollectionsTask {
         }
     }
 
-    private void fillListRandomToMiddle(List<Integer> inputList, int amountOfElements) {
+    private void fillListRandomInTheMiddle(List<Integer> inputList, int amountOfElements) {
         int middle = inputList.size() / 2;
         for (int i = middle; i < middle + amountOfElements / 10; i++) {
             inputList.add(i, random.nextInt());
         }
     }
 
-    private void fillListRandomToEnd(List<Integer> inputList, int amountOfElements) {
+    private void fillListRandomToTheEnd(List<Integer> inputList, int amountOfElements) {
         if (inputList instanceof LinkedList) {
             for (int i = 0; i < amountOfElements; i++) {
                 ((LinkedList<Integer>) inputList).addLast(random.nextInt());
@@ -122,7 +122,7 @@ public class CollectionsTask {
         }
     }
 
-    private void deleteListElementFromStart(List<Integer> inputList) {
+    private void deleteListElementFromTheBeginning(List<Integer> inputList) {
         if (inputList instanceof LinkedList) {
             while (!inputList.isEmpty()) {
                 ((LinkedList<Integer>) inputList).removeFirst();
@@ -134,7 +134,7 @@ public class CollectionsTask {
         }
     }
 
-    private void deleteListElementFromMiddle(List<Integer> inputList, int amountOfElements) {
+    private void deleteListElementFromTheMiddle(List<Integer> inputList, int amountOfElements) {
         int deletedamountOfElements = 0;
         while(deletedamountOfElements < amountOfElements) {
             int middleIndex = inputList.size() / 2;
@@ -143,32 +143,32 @@ public class CollectionsTask {
         }
     }
 
-    private void deleteListElementFromEnd(List<Integer> inputList) {
+    private void deleteListElementFromTheEnd(List<Integer> inputList) {
         while (!inputList.isEmpty()) {
             inputList.remove(inputList.size() - 1);
         }
     }
 
-    private void getListElementFromStart(List<Integer> inputList) {
+    private void getListElementFromTheBeginning(List<Integer> inputList) {
         for (int i = 0; i < inputList.size(); i++) {
             inputList.get(i);
         }
     }
 
-    private void getListElementFromMiddle(List<Integer> inputList) {
+    private void getListElementFromTheMiddle(List<Integer> inputList) {
         int middleIndex = inputList.size() / 2;
         for (int i = middleIndex; i < middleIndex + middleIndex / 2; i++) {
             inputList.get(i);
         }
     }
 
-    private void getListElementFromEnd(List<Integer> inputList) {
+    private void getListElementFromTheEnd(List<Integer> inputList) {
         for (int i = inputList.size() - 1; i >= 0; i--) {
             inputList.get(i);
         }
     }
 
-    private void setListElementToMiddle(List<Integer> inputList) {
+    private void setListElementInTheMiddle(List<Integer> inputList) {
         int middle = inputList.size() / 2;
         for (int i = middle; i < middle + middle / 2; i++) {
             inputList.set(i, random.nextInt());

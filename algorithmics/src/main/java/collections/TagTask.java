@@ -30,7 +30,7 @@ public class TagTask {
             }
             if (tagIsClose(foundTag)) {
                 closeTagIsExists = true;
-                if (lineEndVerify(tagsLines, tagMatcher)) {
+                if (isEndOfLine(tagsLines, tagMatcher)) {
                     tagsDeque.add(tagsLines.substring(openTagIndex, tagMatcher.end())
                             .replaceAll(LINE_SEPARATOR, ""));
                 }
@@ -39,7 +39,7 @@ public class TagTask {
         return tagsDeque;
     }
 
-    private boolean lineEndVerify(String tagsLines, Matcher tagMatcher) {
+    private boolean isEndOfLine(String tagsLines, Matcher tagMatcher) {
         return tagsLines.length() <= tagMatcher.end();
     }
 

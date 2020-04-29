@@ -7,7 +7,7 @@ public class FileTask {
 
     public List<String> restoreOriginalFile(List<String> originalLines, List<String> editedLines)
             throws SameTwiceInARowException, SameNotExpectedException {
-        listNotNullVerification(originalLines, editedLines);
+        isListNotNull(originalLines, editedLines);
         if (listAreEmptyAndEqual(originalLines, editedLines)) {
             List<String> combinedLines = new LinkedList<>();
             combinedLines.add(Status.SAME.name());
@@ -80,7 +80,7 @@ public class FileTask {
     }
 
     @SafeVarargs
-    private final void listNotNullVerification(List<String>... lists) {
+    private final void isListNotNull(List<String>... lists) {
         for (List<String> list : lists) {
             if (list == null) {
                 throw new NullPointerException("Expected list is null");

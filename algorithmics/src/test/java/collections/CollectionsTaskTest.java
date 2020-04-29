@@ -23,71 +23,71 @@ public class CollectionsTaskTest {
 
     @Test
     public void fillListRandomToStart() {
-        long arrayListFillTime = collections.getFillTimeToStart(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListFillTime = collections.getFillTimeToStart(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListFillTime = collections.getFillTimeToTheBeginning(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListFillTime = collections.getFillTimeToTheBeginning(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListFillTime > linkedListFillTime);
     }
 
     @Test
     public void fillListRandomToMiddle() {
-        long arrayListFillTime = collections.getFillTimeToMiddle(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListFillTime = collections.getFillTimeToMiddle(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListFillTime = collections.getFillTimeInTheMiddle(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListFillTime = collections.getFillTimeInTheMiddle(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListFillTime < linkedListFillTime);
     }
 
     @Test
     public void fillListRandomToEnd() {
-        long arrayListFillTime = collections.getFillTimeToEnd(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListFillTime = collections.getFillTimeToEnd(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListFillTime = collections.getFillTimeToTheEnd(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListFillTime = collections.getFillTimeToTheEnd(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListFillTime < linkedListFillTime);
     }
 
     @Test
     public void deleteListElementsFromStart() {
-        long arrayListDeleteTime = collections.getDeleteTimeFromStart(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListDeleteTime = collections.getDeleteTimeFromStart(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListDeleteTime = collections.getDeleteTimeFromTheBeginning(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListDeleteTime = collections.getDeleteTimeFromTheBeginning(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListDeleteTime > linkedListDeleteTime);
     }
 
     @Test
     public void deleteListElementsFromMiddle() {
-        long arrayListDeleteTime = collections.getDeleteTimeFromMiddle(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListDeleteTime = collections.getDeleteTimeFromMiddle(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListDeleteTime = collections.getDeleteTimeFromTheMiddle(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListDeleteTime = collections.getDeleteTimeFromTheMiddle(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListDeleteTime < linkedListDeleteTime);
     }
 
     @Test
     public void deleteListElementsFromEnd() {
-        long arrayListDeleteTime = collections.getDeleteTimeFromEnd(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListDeleteTime = collections.getDeleteTimeFromEnd(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListDeleteTime = collections.getDeleteTimeFromTheEnd(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListDeleteTime = collections.getDeleteTimeFromTheEnd(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListDeleteTime <= linkedListDeleteTime);
     }
 
     @Test
     public void getListElementFromStart() {
-        long arrayListGetElementTime = collections.getListElementFromStartTime(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListGetElementTime = collections.getListElementFromStartTime(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListGetElementTime = collections.getListElementFromTheBeginningTime(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListGetElementTime = collections.getListElementFromTheBeginningTime(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListGetElementTime < linkedListGetElementTime);
     }
 
     @Test
     public void getListElementFromMiddle() {
-        long arrayListGetElementTime = collections.getListElementFromMiddleTime(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListGetElementTime = collections.getListElementFromMiddleTime(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListGetElementTime = collections.getListElementFromTheMiddleTime(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListGetElementTime = collections.getListElementFromTheMiddleTime(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListGetElementTime < linkedListGetElementTime);
     }
 
     @Test
     public void getListElementFromEnd() {
-        long arrayListGetElementTime = collections.getListElementFromEndTime(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListGetElementTime = collections.getListElementFromEndTime(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListGetElementTime = collections.getListElementFromTheEndTime(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListGetElementTime = collections.getListElementFromTheEndTime(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListGetElementTime < linkedListGetElementTime);
     }
 
     @Test
     public void setListElementToMiddle() {
-        long arrayListSetElementTime = collections.getSetListElementToMiddleTime(arrayList, AMOUNT_OF_ELEMENTS);
-        long linkedListSetElementTime = collections.getSetListElementToMiddleTime(linkedList, AMOUNT_OF_ELEMENTS);
+        long arrayListSetElementTime = collections.getTimeToSetListElementsInTheMiddle(arrayList, AMOUNT_OF_ELEMENTS);
+        long linkedListSetElementTime = collections.getTimeToSetListElementsInTheMiddle(linkedList, AMOUNT_OF_ELEMENTS);
         Assert.assertTrue(arrayListSetElementTime < linkedListSetElementTime);
     }
 }

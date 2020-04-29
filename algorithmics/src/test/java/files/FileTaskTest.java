@@ -14,7 +14,8 @@ public class FileTaskTest {
     private static final String FILES_PATH = "src/main/resources/files/";
     private static final String DEFAULT_LINES_FILE_PATH = FILES_PATH + "originalLines";
     private static final String EDITED_LINES_FILE_PATH = FILES_PATH + "editedLines";
-    private static final String EDITED_LINES_WITH_SAME_NOT_EXPECTED_FILE_PATH = FILES_PATH + "editedLinesWithSameNotExpected";
+    private static final String EDITED_LINES_WITH_SAME_NOT_EXPECTED_FILE_PATH = FILES_PATH +
+            "editedLinesWithSameNotExpected";
     private static final String COMBINED_LINES_FILE_PATH = FILES_PATH + "combinedLines";
     private static final String EMPTY_FILE_PATH = FILES_PATH + "empty";
     private static final String COMBINED_LINES_FROM_EMPTY_FILE_PATH = FILES_PATH + "combinedLinesFromEmptyFile";
@@ -52,13 +53,15 @@ public class FileTaskTest {
     }
 
     @Test(expected = SameTwiceInARowException.class)
-    public void restoreOriginalFileWithSameTwiceInARowException() throws SameNotExpectedException, SameTwiceInARowException {
+    public void restoreOriginalFileWithSameTwiceInARowException()
+            throws SameNotExpectedException, SameTwiceInARowException {
         List<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
         fileTask.restoreOriginalFile(originalLines, originalLines);
     }
 
     @Test(expected = SameNotExpectedException.class)
-    public void restoreOriginalFileWithSameNotExpectedException() throws SameNotExpectedException, SameTwiceInARowException {
+    public void restoreOriginalFileWithSameNotExpectedException()
+            throws SameNotExpectedException, SameTwiceInARowException {
         List<String> originalLines = FilesUtil.readFromFile(DEFAULT_LINES_FILE_PATH);
         fileTask.restoreOriginalFile(originalLines, editedLinesWithSameNotExpected);
     }
